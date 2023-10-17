@@ -1,6 +1,17 @@
 import { HeroCard } from '../components';
 
 export const SearchPage = () => {
+
+    const { searchText, onInputChange } = useForm({
+        searchText: ''
+    });
+
+    const onSearchSubmit = ( event ) => {
+        event.preventDefault();
+
+        console.log({ searchText });
+    }
+
     return (
         <>
             <h1>Search Page</h1>
@@ -9,13 +20,15 @@ export const SearchPage = () => {
                 <div className="col-5">
                     <h4>Searching</h4>
                     <hr />
-                    <form>
+                    <form onSubmit={ onSearchSubmit }>
                         <input 
                             type="text" 
                             placeholder="Search a hero"
                             className="form-control"
                             name="searchText"
                             autoComplete="off"
+                            value={ searchText }
+                            onChange={ onInputChange }
                         />
 
                         <button className="btn btn-outline-primary mt-1">
